@@ -1,10 +1,4 @@
-
 *.iml
-
-src/data_process/.idea/workspace.xml
-
-src/data_process/.idea/workspace (XUCZHANG-WORK's conflicted copy 2017-03-09).xml
-
-src/data_process/.idea/modules.xml
-
-src/data_process/.idea/misc.xml
+*.asv
+src/data_process/.idea
+doc/Exp_Result.xlsx
