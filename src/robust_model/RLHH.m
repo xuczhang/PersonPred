@@ -1,9 +1,9 @@
-function [ w, S ] = RLHH( X, y)
+function [ beta, S ] = RLHH( X, y)
 %RLH Summary of this function goes here
 %   Detailed explanation goes here
 p = size(X, 1);
 n = size(X, 2);
-w = zeros(p, 1);
+beta = zeros(p, 1);
 S = 1:n;
 S = S';
 %k = n-n_o;
@@ -12,8 +12,8 @@ MAX_ITER = 100;
 MIN_THRES = 1e-4;
 for iter=1:MAX_ITER
     res_old = res;
-    w = update_w(X, y, S);
-    res = update_res(X, y, w);    
+    beta = update_w(X, y, S);
+    res = update_res(X, y, beta);    
 
     outlier_k = HT_ParamSearch_constraint(res);
     %outlier_k = HT_ParamSearch(res);
