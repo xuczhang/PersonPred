@@ -9,11 +9,11 @@ S = S';
 %k = n-n_o;
 res = zeros(n,1);
 MAX_ITER = 100;
-MIN_THRES = 1e-4;
+MIN_THRES = 1e-2;
 for iter=1:MAX_ITER
     res_old = res;
     beta = update_w(X, y, S);
-    res = update_res(X, y, beta);    
+    res = update_res(X, y, beta);
 
     outlier_k = HT_ParamSearch_constraint(res);
     %outlier_k = HT_ParamSearch(res);
@@ -25,11 +25,12 @@ for iter=1:MAX_ITER
         fprintf('Max Iteration Reached!!!');
     end
     
-    %%fprintf('res=%f\n', norm(res(S)-res_old(S)));
+    %fprintf('res=%f\n', norm(res(S)-res_old(S)));
     
-    fprintf('res=%f\n', norm(res(S))/n);
-    if norm(res(S)-res_old(S))/n <= MIN_THRES
-        fprintf('Finished!!!');
+    %fprintf('res=%f\n', norm(res(S))/n);
+    %if norm(res(S)-res_old(S))/n <= MIN_THRES
+    if norm(res(S))/n <= MIN_THRES
+        %fprintf('Finished!!!');
         break;
     end
 end
@@ -99,7 +100,7 @@ function idx = HT_ParamSearch_constraint(res)
     %plot(2:1300, test(2:1300));
     
     idx = -1;
-    plot(500:n-300, param_score(500:n-300));
+    %plot(500:n-300, param_score(500:n-300));
     %plot(1:n, param_score);
     [sort_s, sort_si] = sort(param_score);
     for k = 1:n

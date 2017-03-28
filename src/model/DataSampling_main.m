@@ -1,12 +1,11 @@
 p = 100; % feature dimension
 k = 1;
-%cr = 0.1; % corruption ratio (from 0.1 to 1.2)
+cr = 0.7; % corruption ratio (from 0.1 to 1.2)
 bNoise = 1;
 obj_num = 5;
 
 % generate the single data
-
-DataSampling( p, k, 0.5, bNoise, obj_num, 1);
+%DataSampling( p, k, cr, bNoise, obj_num, 1);
 
 % generate the data per different corruption ratio
 %{
@@ -19,11 +18,11 @@ end
 %}
 
 % generate the data per different uncorrupted data size
-%{
-cr = 0.1;
+
+cr = 0.5;
 for k = 1:1:10
-    for idx = 1:1:10
-        DataSampling( p, k, cr, bNoise, idx);
+    for idx = 1:1:1
+        DataSampling( p, k, cr, bNoise, obj_num, idx);
     end
 end
-%}
+%{%}

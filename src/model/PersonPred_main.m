@@ -1,5 +1,14 @@
 %data_file = strcat('~/Dataset/PersonPred/synthetic.mat');
-data_file = strcat('D:/Dataset/PersonPred/synthetic.mat');
+
+p = 100; % feature dimension
+k = 10;
+cr = 0.5;
+bNoise = 1;
+obj_num = 5;
+idx = 1;
+
+%data_file = strcat('D:/Dataset/PersonPred/synthetic.mat');
+data_file = FindDataPath( p, k, cr, bNoise, obj_num, idx );
 data = load(data_file);
 Xtr = data.Xtr;
 Ytr_arr = data.Ytr_arr;

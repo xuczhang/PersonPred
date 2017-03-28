@@ -28,8 +28,8 @@ end
 S = 1:n;
 S = S';
 
-MAX_ITER = 200;
-MIN_THRES = 1e-4;
+MAX_ITER = 100;
+MIN_THRES = 1e-2;
 for iter=1:MAX_ITER
     
     for idx = 1:size(obj_set, 2)
@@ -50,7 +50,8 @@ for iter=1:MAX_ITER
         S_arr{i} = S_i;
         Res_arr{i} = res_i;
         
-        if norm(res_i(S)-res_old_i(S))/n <= MIN_THRES
+        %if norm(res_i(S)-res_old_i(S))/n <= MIN_THRES
+        if norm(res_i(S))/n <= MIN_THRES
             %fprintf('Finished!!!');
             obj_set = obj_set(obj_set~=i);
             break;
@@ -166,7 +167,7 @@ function idx = HT_ParamSearch_constraint(res)
     %plot(2:1300, test(2:1300));
     
     idx = -1;
-    plot(500:n-300, param_score(500:n-300));
+    %plot(500:n-300, param_score(500:n-300));
     %plot(1:n, param_score);
     [sort_s, sort_si] = sort(param_score);
     for k = 1:n

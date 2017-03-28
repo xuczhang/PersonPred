@@ -5,11 +5,12 @@ import scipy
 import scipy.io
 
 
-class PSYDataMgr:
+class AgeDataMgr:
 
     def __init__(self):
-        self.train_num = 5000
-        self.test_num = 5000
+        # total number is 58000
+        self.train_num = 30000
+        self.test_num = 25000
         self.total_num = self.train_num + self.test_num
 
         self.feat_dict = {} # id: feat array
@@ -29,6 +30,7 @@ class PSYDataMgr:
                     self.feat_dict[id] = feat[1:]
                 if len(self.id_list) == self.total_num:
                     break
+                    #pass
         pass
 
     def load_label_file(self, file):
@@ -77,12 +79,12 @@ class PSYDataMgr:
 
 if __name__ == '__main__':
 
-    #data_dir = 'D:/Dataset/PSY/'
-    data_dir = '/Users/xuczhang/Dataset/PSY/'
+    #data_dir = '/Users/xuczhang/Dataset/PSY/'
+    data_dir = 'D:/Dataset/PersonPred/age/'
     label_file = data_dir + 'label.csv'
     feat_file = data_dir + 'feature.csv'
     mat_file = data_dir + 'input.mat'
-    dataMgr = PSYDataMgr()
+    dataMgr = AgeDataMgr()
     dataMgr.load_label_file(label_file)
     dataMgr.load_feat_file(feat_file)
 

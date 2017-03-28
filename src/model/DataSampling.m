@@ -72,14 +72,9 @@ end
     %t = ytr_all - sigmf(Xtr_all'*w, [1 0]);
 
     %% Save the results into the output file
-    str_noise = '';
-    if ~bNoise
-        str_noise = 'nn_';
-    end
-    data_path = 'D:/Dataset/PersonPred/';
-    %data_path = '~/Dataset/PersonPred/';
-    %data_file = strcat(data_path, num2str(k), 'K_', 'p', num2str(p), '_', str_noise, num2str(n_o), '_', num2str(idx), '.mat');
-    data_file = strcat(data_path, 'synthetic.mat');
+    %data_file = strcat(data_path, 'synthetic.mat');
+    data_file = FindDataPath( p, k, cr, bNoise, obj_num, idx );
+    
     save(data_file, 'Xtr', 'Ytr_arr', 'Beta_arr', 'Xte', 'Yte_arr');
 end
 
