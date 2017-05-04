@@ -6,14 +6,15 @@ function [] = DataSampling( p, k, cr, bNoise, obj_num, idx)
     %cr = 0.1; % corruption ratio (from 0.1 to 1.2)
     %bNoise = 1;
 
-    n = 1000*k; % authetic sample number in training data
+    n = 1000*k; % total sample number in training data
     n_o = int16(cr*n); % corruption sample number(from 100 to 1200)
+    n_u = n - n_o;
     nt = n; % test sample number
     
     % sample X data by normal distribution with mu=0 and cov=I_p
     X_mu = zeros(p, 1);
     X_cov = eye(p);
-    Xtr_a = mvnrnd(X_mu, X_cov, n)'; %authetic part X    
+    Xtr_a = mvnrnd(X_mu, X_cov, n_u)'; %authetic part X    
     Xtr_o = mvnrnd(X_mu, X_cov, n_o)'; % outlier part X
     Xtr = [Xtr_a, Xtr_o];    
     Xte = mvnrnd(X_mu, X_cov, nt)'; % sample testing X data
@@ -32,8 +33,8 @@ for i=1:obj_num
     Beta_arr{i} = beta;
 
     % sample noise eplison for outliers
-    e_mu = zeros(n, 1);
-    e_cov = eye(n) * 0.1;
+    e_mu = zeros(n_u, 1);
+    e_cov = eye(n_u) * 0.1;
     e_a = mvnrnd(e_mu, e_cov)';
 
     % generate the authentic samples by y_i = <w, x_i> + e_i

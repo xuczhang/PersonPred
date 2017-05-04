@@ -1,8 +1,8 @@
 %data_file = strcat('~/Dataset/PersonPred/synthetic.mat');
 
 p = 100; % feature dimension
-k = 10;
-cr = 0.5;
+k = 4;
+cr = 0.2;
 bNoise = 1;
 obj_num = 5;
 idx = 1;
@@ -19,7 +19,7 @@ Yte_arr = data.Yte_arr;
 Beta_truth_arr = data.Beta_arr;
 
 tic;
-[Beta_arr, S] = PersonPred(Xtr, Ytr_arr);
+[Beta_arr, S] = RMFP(Xtr, Ytr_arr, 1);
 toc;
 
 obj_num = size(Ytr_arr, 2);
@@ -32,4 +32,4 @@ for i = 1:obj_num
     total_error = total_error + error;
 end
 
-fprintf('Total error: %f\n', total_error);
+fprintf('Avg error: %f\n', total_error/obj_num);

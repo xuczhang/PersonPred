@@ -5,10 +5,10 @@ import scipy
 import scipy.io
 
 
-class BigFiveDataMgr:
+class BigFiveWeiboDataMgr:
 
     def __init__(self, train_num):
-        # total number is 51865
+
         self.train_num = train_num
         self.test_num = train_num
         self.total_num = self.train_num + self.test_num
@@ -41,7 +41,7 @@ class BigFiveDataMgr:
                 id = rows[0]
                 self.label_dict[id] = []
 
-                for label in rows[1:]:
+                for label in rows[1:6]:
                     self.label_dict[id].append(label)
                 #self.id_list.append(id)
                 #self.label_dict[id] = rows[2]
@@ -96,14 +96,13 @@ class BigFiveDataMgr:
 
 if __name__ == '__main__':
 
-    #data_dir = 'D:/Dataset/PersonPred/bigfive/'
-    data_dir = 'D:/Dataset/PersonPred/bigfive_liwc/'
+    data_dir = 'D:/Dataset/PersonPred/bigfive_weibo_liwc/'
     #data_dir = '/Users/xuczhang/Dataset/PersonPred/age'
-    k = 12
+    train_num = 1000
     label_file = data_dir + 'label.csv'
     feat_file = data_dir + 'feature.csv'
-    mat_file = data_dir + 'bigfive_' + str(k) + 'K.mat'
-    dataMgr = BigFiveDataMgr(k*1000)
+    mat_file = data_dir + 'bigfive_' + str(train_num) + '.mat'
+    dataMgr = BigFiveWeiboDataMgr(train_num)
     dataMgr.load_label_file(label_file)
     dataMgr.load_feat_file(feat_file)
 

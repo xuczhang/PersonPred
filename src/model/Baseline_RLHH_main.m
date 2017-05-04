@@ -1,11 +1,11 @@
 %data_file = strcat('~/Dataset/PersonPred/synthetic.mat');
-
+%clc;
 p = 100; % feature dimension
-k = 7;
-cr = 0.5;
+k = 4;
+cr = 0.05;
 bNoise = 1;
 obj_num = 5;
-idx = 1;
+idx = 10;
 data_file = FindDataPath( p, k, cr, bNoise, obj_num, idx );
 
 data = load(data_file);
@@ -33,4 +33,4 @@ for i = 1:obj_num
     total_error = total_error + error;
 end
 
-fprintf('Total error: %f\n', total_error);
+fprintf('Avg error: %f\n', total_error/obj_num);

@@ -1,4 +1,4 @@
-function [ Beta_arr, S_arr ] = Baseline_RLHH( Xtr, Ytr_arr )
+function [ Beta_arr, S_arr ] = Baseline_RLHH_Lasso( Xtr, Ytr_arr )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -66,7 +66,8 @@ end
 function w = update_w(X, y, S)    
     y_S = y(S);
     X_S = X(:,S);
-    w = inv(X_S*X_S')*X_S*y_S;
+    %w = inv(X_S*X_S')*X_S*y_S;
+    w = lasso(X_S', y_S, 'Lambda', 0.000001);
 end
 
 % constraint
